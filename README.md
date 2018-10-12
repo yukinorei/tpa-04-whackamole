@@ -124,6 +124,7 @@ export default {
 **リンク：**
 
 - [プロップス/props](https://jp.vuejs.org/v2/api/#props)
+- [v-bindディレクティブ](https://jp.vuejs.org/v2/api/#v-bind)
 
 # Checkpoint-3
 
@@ -135,11 +136,13 @@ export default {
 
 * [ ] 残りのコンポーネントをデータプロップスを渡し、値を表示するように実装しよう。
 * [ ] App.vue から渡すデータを変えてみて、表示されるかを確認してください。
+* [ ] `moleData` を`v-for`文で回して、`<Mole>`を4つ表示しましょう。
 
 **リンク:**
 
 - [クラスとスタイルのバインディング](https://jp.vuejs.org/v2/guide/class-and-style.html)
 - [Computed プロップス](https://jp.vuejs.org/v2/api/#computed)
+- [v-for](https://jp.vuejs.org/v2/api/#v-for)
 
 # Checkpoint-4
 
@@ -191,7 +194,10 @@ export default {
 * [ ] `Moles` のwrapper component を使用している場合、`Moles`からもカスタムイベントをトリガーしましょう
 * [ ] `App` でカスタムイベントにハンドラーを紐付けて、`moles`配列を更新しよう。
   * [ ] 叩かれた場合whacks数字も`+1`する
+* [ ] 動的にモグラがポンポンと上がってくるメソッドも追加して、ゲームスタートにインターバルで実行されうようにしよう。
+  * ポイント： 小さなヘルパー関数(補助関数)を追加しながら実装しよう。`startMoles`, `stopMoles`, `activateRandomMole`, などなど。
 * [ ] ゲームが終わったらHigh Scoreも更新しとこう！
+* [ ] ボーナスバグ潰し：現在、ゲームスタートを何度も押すと大変なことになってしまうのでは？ちゃんとゲームスタートは遊んでいる間には押せないようにしよう。
 
 お疲れ様です！
 

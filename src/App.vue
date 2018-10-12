@@ -5,7 +5,6 @@
     </h1>
     <button
       class="start-game"
-      v-on:click="gameStart"
     >
       Start Game
     </button>
