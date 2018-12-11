@@ -23,43 +23,7 @@
 
 # Git Workflow
 
-今回のレポジトリはGit ワークフローが少し変わります：
-
-```
-master <- upstreamの変更を取り込むブランチ
-dev <- 作業用masterブランチ
-feat/checkpoint-N <- devにPRを送るためのブランチ
-```
-
-となります。ワークフローがわかりにくかったらメンターと確認しましょう！
-
-### はじめに：
-
-1. Fork this repo
-1. Clone the repo
-1. `cd` into the repository
-1. Add an upstream (replace `XX`): `git remote add upstream https://github.com/bootcamp-tpa/tpa-XX-whackamole`
-1. Create a dev branch `git checkout -b dev`
-
-### 開発フロー：
-
-To begin working on `feat/checkpoint-N`:
-1. Create a feature branch from dev `git checkout dev && git checkout -b feat/checkpoint-N`
-1. Repeat `figure A`.
-
-=== `figure A`: repeat until approved ===
-
-1. Work on `feat/checkpoint-N`, add, and commit
-1. Submit a Pull Request from `feat/checkpoint-N` to `dev`
-1. Have it reviewed, and merge to `dev`
-
-=========================================
-
-解答コードをGitプルする：（メンターが新コードをプッシュした時）
-
-1. `git checkout master`
-1. `git pull upstream master`
-1. 自分の Github.com fork の master branch を更新したければ： `git push origin master`
+今回のレポジトリはGit ワークフローが少し変わります。詳しくは[こちら(wiki)](https://github.com/bootcamp-tpa/tpa-resources/wiki/%5B%E3%83%AF%E3%83%BC%E3%82%AF%E3%83%95%E3%83%AD%E3%83%BC%5D-2%E3%83%B6%E6%9C%88%E7%9B%AE%E3%81%AEGit-Workflow)をご覧ください。
 
 ***
 
