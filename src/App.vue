@@ -13,11 +13,8 @@
       <Counter label='High Score' :count='highScore'></Counter>
       <Counter label='Timer' :count='timer'></Counter>
     </div>
-    <div class="moles-container gameActive">
-      <Mole></Mole>
-      <Mole></Mole>
-      <Mole></Mole>
-      <Mole></Mole>
+    <div class="moles-container" v-bind='gameActiveObj'>
+      <Mole v-for='(item, index) in moles' v-bind:key='index' v-bind:active='item'></Mole>
     </div>
   </div>
 </template>
@@ -36,8 +33,16 @@ export default {
       score: 0,
       highScore: 0,
       timer: 20,
-      moles: [false, false, false, false],
+      moles: [true, false, true, false],
+      gameActive:false,
     };
+  },
+  computed: {
+    gameActiveObj: function() {
+      return {
+        'game-active': this.gameActive,
+      };
+    }
   }
 };
 </script>

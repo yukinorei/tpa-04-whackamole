@@ -1,5 +1,5 @@
 <template>
-  <div class="mole-container inactive">
+  <div class="mole-container" v-bind:class='getActiveObj'>
     <div class="mole-image-container">
       <img class="mole" src="../assets/mole.png" alt="mole"/>
     </div>
@@ -10,6 +10,15 @@
 <script>
 export default {
   name: 'Mole',
+  props: ['active'],
+  computed: {
+    getActiveObj: function() {
+      return {
+        active: this.active,
+        inactive: !this.active,
+      };
+    }
+  }
 };
 </script>
 
