@@ -31,6 +31,14 @@ export default {
     Counter,
     Mole,
   },
+  data: () => {
+    return {
+      score: 0,
+      highScore: 0,
+      timer: 20,
+      moles: [false, false, false, false],
+    };
+  }
 };
 </script>
 
