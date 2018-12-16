@@ -1,7 +1,7 @@
 <template>
   <div class="mole-container" v-bind:class='getActiveObj'>
     <div class="mole-image-container">
-      <img class="mole" src="../assets/mole.png" alt="mole"/>
+      <img class="mole" src="../assets/mole.png" alt="mole" @click='hitActive' />
     </div>
     <img class="dirt" src="../assets/dirt.svg" alt="mole dirt"/>
   </div>
@@ -18,6 +18,11 @@ export default {
         inactive: !this.active,
       };
     }
+  },
+  methods: {
+    hitActive: function() {
+      this.$emit('hit', this.moleId);
+    },
   }
 };
 </script>

@@ -5,6 +5,9 @@
     </h1>
     <button
       class="start-game"
+      :class='getButtonActive'
+      :disabled='gameActive'
+      @click='startGame'
     >
       Start Game
     </button>
@@ -14,7 +17,7 @@
       <Counter label='Timer' :count='timer'></Counter>
     </div>
     <div class="moles-container" v-bind='gameActiveObj'>
-      <Mole v-for='(item, index) in moles' v-bind:key='index' v-bind:active='item'></Mole>
+      <Mole v-for='(item, index) in moles' v-bind:key='index' v-bind:active='item' @hit='hitCount'></Mole>
     </div>
   </div>
 </template>
@@ -28,13 +31,13 @@ export default {
     Counter,
     Mole,
   },
-  data: () => {
+  data: function() {
     return {
       score: 0,
       highScore: 0,
       timer: 20,
-      moles: [true, false, true, false],
-      gameActive:false,
+      moles: [false, false, false, false],
+      gameActive: false,
     };
   },
   computed: {
@@ -42,7 +45,76 @@ export default {
       return {
         'game-active': this.gameActive,
       };
+    },
+    getButtonActive: function() {
+      return {
+        buttonActive: this.gameActive,
+      };
     }
+  },
+  methods: {
+    resetStatus: function() {
+      this.score=0;
+      this.timer=20;
+      this.moles = [false, false, false, false];
+    },
+    startGame: function() {
+      this.gameActive = true;
+      this.resetStatus();
+      this.appearMole();
+      this.startTimer();
+    },
+    endGame: function() {
+      this.gameActive=false;
+      this.stopTimer();
+      this.stopMoles();
+      this.updateHighScore();
+    },
+    startTimer: function() {
+      this.timeId = setInterval(()=>{
+        this.countTime();
+      }, 1000);
+    },
+    appearMole: function() {
+      this.moleInterval = setInterval(this.randomMole.bind(this), 400);
+    },
+    activateMole: function(moleId) {
+      this.toggleMole(moleId, true);
+      setTimeout(() => this.deactivateMole(moleId), 1500);
+    },
+    randomMole: function() {
+      const randomMoleIndex = Math.floor(Math.random() * this.moles.length);
+      if (!this.moles[randomMoleIndex]) {
+        this.activateMole(randomMoleIndex);
+      }
+    },
+    stopTimer: function() {
+      clearInterval(this.timeId);
+    },
+    countTime: function() {
+      this.timer--;
+      if(this.timer === 0) {
+        this.endGame();
+      }
+    },
+    stopMoles: function() {
+      clearInterval(this.moleInterval);
+    },
+    hitCount: function(moleId) {
+      this.score = this.score + 1;
+      this.deactivateMole(moleId);
+    },
+    deactivateMole: function(moleId) {
+      this.toggleMole(moleId, false);
+    },
+    toggleMole: function(moleId, showAction) {
+      const moles = this.moles.slice();
+      moles[moleId] = showAction;
+      this.moles = moles;
+    },
+    updateHighScore: function() {
+      this.highScore = Math.max(this.highScore, this.score);
+    },
   }
 };
 </script>
@@ -64,6 +136,10 @@ export default {
   color: #fff;
   font-size: 1em;
   cursor: pointer;
+}
+
+.buttonActive {
+  opacity: 0.5;
 }
 
 .counters-container {
