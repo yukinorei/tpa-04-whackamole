@@ -54,8 +54,8 @@ export default {
   },
   methods: {
     resetStatus: function() {
-      this.score=0;
-      this.timer=20;
+      this.score = 0;
+      this.timer = 20;
       this.moles = [false, false, false, false];
     },
     startGame: function() {
