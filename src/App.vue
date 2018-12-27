@@ -16,7 +16,7 @@
       <Counter label='High Score' :count='highScore'></Counter>
       <Counter label='Timer' :count='timer'></Counter>
     </div>
-    <div class="moles-container" v-bind='gameActiveObj'>
+    <div class="moles-container" v-bind:class='gameActiveObj'>
       <Mole v-for='(item, index) in moles' v-bind:key='index' v-bind:active='item' @hit='hitCount'></Mole>
     </div>
   </div>
@@ -59,8 +59,8 @@ export default {
       this.moles = [false, false, false, false];
     },
     startGame: function() {
-      this.gameActive = true;
       this.resetStatus();
+      this.gameActive = true;
       this.appearMole();
       this.startTimer();
     },
