@@ -1,5 +1,5 @@
 <template>
-  <div class="mole-container" v-bind:class='getActiveObj'>
+  <div class="mole-container" v-bind:class='gameActiveObj'>
     <div class="mole-image-container">
       <img class="mole" src="../assets/mole.png" alt="mole" @click='hitActive' />
     </div>
@@ -10,9 +10,9 @@
 <script>
 export default {
   name: 'Mole',
-  props: ['active'],
+  props: ['active', 'moleId'],
   computed: {
-    getActiveObj: function() {
+    gameActiveObj: function() {
       return {
         active: this.active,
         inactive: !this.active,

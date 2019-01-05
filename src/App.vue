@@ -17,7 +17,7 @@
       <Counter label='Timer' :count='timer'></Counter>
     </div>
     <div class="moles-container" v-bind:class='gameActiveObj'>
-      <Mole v-for='(item, index) in moles' v-bind:key='index' v-bind:active='item' @hit='hitCount'></Mole>
+      <Mole v-for='(item, index) in moles'  v-bind:moleId="index" v-bind:key='index' v-bind:active='item' @hit='hitCount'></Mole>
     </div>
   </div>
 </template>
